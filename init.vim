@@ -11,8 +11,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 " Fugitive - git wrapper
 Plug 'tpope/vim-fugitive'
-" Neomake - asynchronous make and Syntax checking
+" Neomake - asynchronous make and syntax checking
 Plug 'benekastah/neomake'
+" indentLine - shows indention levels with 'set list' on
+Plug 'yggdroot/indentline'
+" BetterWhitespace - whitespace highlighting
+Plug 'ntpeters/vim-better-whitespace'
 " Scratch - scratch buffer
 Plug 'mtth/scratch.vim'
 " Vimwiki - personal wiki
@@ -87,7 +91,7 @@ set showbreak=»»»               " Character to show on wrapped lines
 set foldmethod=indent           " Create folds at indents
 set foldnestmax=5               " Don't go deeper than 5 nested indents
 set clipboard=unnamed           " Copy contents into the system clipboard
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ " when 'list on' is set
+set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ " when 'list on' is set
 " seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
 let g:seoul256_background=236
 " seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
@@ -129,9 +133,6 @@ set viewoptions=cursor,folds,slash
 set sessionoptions=buffers
 " Do not save buffer options which breaks syntax highlighting on restore
 set sessionoptions-=options
-
-" Disable folding on the Startify plugin
-autocmd Filetype startify setlocal nofoldenable
 
 " ###### Keymappings ######
 " Easy navigation while in split mode
