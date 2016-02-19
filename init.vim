@@ -135,11 +135,22 @@ set sessionoptions=buffers
 set sessionoptions-=options
 
 " ###### Keymappings ######
-" Easy navigation while in split mode
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Easy navigation while in split and terminal modes
+" Quick escape to Normal mode in a Terminal buffer.  Alt+j Alt+j.
+:tnoremap <A-j><A-j> <C-\><C-n>
+" Navigation from Terminal to other splits in Insert mode.  Alt+h,j,k,l.
+:tnoremap <A-h> <C-\><C-n><C-w>h
+:tnoremap <A-j> <C-\><C-n><C-w>j
+:tnoremap <A-k> <C-\><C-n><C-w>k
+:tnoremap <A-l> <C-\><C-n><C-w>l
+" Navigation to splits in Normal mode.  Alt+h,j,k,l.
+:nnoremap <A-h> <C-w>h
+:nnoremap <A-j> <C-w>j
+:nnoremap <A-k> <C-w>k
+:nnoremap <A-l> <C-w>l
+
+" Exit to Normal mode from Insert mode. j+j.
+:imap jj <Esc>
 
 " Map j and k to only move one line on the screen when word wrapped
 nnoremap j gj
@@ -171,5 +182,3 @@ vnoremap <F1> <Nop>
 " Map NERDTree quick access
 nnoremap <C-n> :NERDTreeToggle<cr>
 
-" Quickly typing will exit Insert mode
-:imap jj <Esc>
