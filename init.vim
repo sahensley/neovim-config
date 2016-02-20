@@ -120,6 +120,7 @@ let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_extensions = ['branch']
 
 " Turn on backups
 set backup
