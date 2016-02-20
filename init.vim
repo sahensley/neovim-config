@@ -58,7 +58,6 @@ if !isdirectory($HOME . '/.vimhodgepodge/wiki_html')
     silent! call mkdir($HOME . '/.vimhodgepodge/wiki_html','p')
 endif
 
-set encoding=utf-8              " force utf-8 encoding
 set laststatus=2                " never show the status line
 set nu                          " set line numbering
 set rnu                         " set relative line number
