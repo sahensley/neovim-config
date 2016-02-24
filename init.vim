@@ -112,10 +112,19 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+" Vimwiki plugin configuration
 let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'path_html': '~/.vimhodgepodge/wiki_html',
             \ 'syntax': 'markdown', 'ext': '.wiki'}]
 
+" Scratch plugin configuration
+let g:scratch_top = 0
+let g:scratch_insert_autohide = 0
+let g:scratch_autohide = 0
+let g:scratch_no_mappings = 1
+
+
+" Airline plugin configuration
 " Don't use powerline patched fonts in airline
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
