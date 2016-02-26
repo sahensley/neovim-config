@@ -95,9 +95,6 @@ set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ " when 'list on
 let g:seoul256_background=236
 " seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
 let g:seoul256_light_background=252
-autocmd FileType * unlet! g:airline#extensions#whitespace#checks
-autocmd FileType markdown let g:airline#extensions#whitespace#checks = [ 'indent' ]
-autocmd FileType vimwiki let g:airline#extensions#whitespace#checks = [ 'indent' ]
 filetype plugin indent on
 syntax enable                   " syntax highlighting
 set background=dark             " Use dark backgrounds. If using seoul256-light, set to light.
