@@ -88,7 +88,8 @@ set splitright                  " Split window to right
 set linebreak                   " wrap whole word, 'list on' breaks this
 set showbreak=»»»               " Character to show on wrapped lines
 set foldmethod=indent           " Create folds at indents
-set foldnestmax=5               " Don't go deeper than 5 nested indents
+set foldlevelstart=10           " Most folds are open by default.  Fold after 10 deep.
+set foldnestmax=10              " Limit folds to 10 deep
 set clipboard=unnamed           " Copy contents into the system clipboard
 set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ " when 'list on' is set
 " seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
