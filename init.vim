@@ -1,3 +1,6 @@
+" vim:fdm=marker
+
+" Plugin initialization {{{
 call plug#begin('~/.config/nvim/plugged')
 " Seoul256 - color scheme
 Plug 'junegunn/seoul256.vim'
@@ -22,7 +25,9 @@ Plug 'mtth/scratch.vim'
 " Vimwiki - personal wiki
 Plug 'vimwiki/vimwiki'
 call plug#end()
+" }}}
 
+" Directory creation {{{
 " Turn on automatic backups and set path
 " Check if backup dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/backups')
@@ -57,6 +62,7 @@ endif
 if !isdirectory($HOME . '/.vimhodgepodge/wiki_html')
     silent! call mkdir($HOME . '/.vimhodgepodge/wiki_html','p')
 endif
+" }}}
 
 set laststatus=2                " never show the status line
 set nu                          " set line numbering
@@ -110,38 +116,43 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" Vimwiki plugin configuration
+" Vimwiki plugin configuration {{{
 let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'path_html': '~/.vimhodgepodge/wiki_html',
             \ 'syntax': 'markdown', 'ext': '.wiki'}]
+" }}}
 
-" Scratch plugin configuration
+" Scratch plugin configuration {{{
 let g:scratch_top = 0
 let g:scratch_insert_autohide = 0
 let g:scratch_autohide = 0
 let g:scratch_no_mappings = 1
+" }}}
 
-
-" Airline plugin configuration
+" Airline plugin configuration {{{
 " Don't use powerline patched fonts in airline
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_extensions = ['branch']
+" }}}
 
-" Turn on backups
+" Turn on backups {{{
 set backup
 " When file is written, grab the current timestamp and use as the backup
 " extension.  I.E. example.txt_1970-01-01.0000.bak
 :au BufWritePre * let &backupext=strftime("_%Y-%m-%d.%H%M.bak")
+" }}}
 
+" View and session options {{{
 " restore_view.vim saves views with these options
 set viewoptions=cursor,folds,slash
 set sessionoptions=buffers
 " Do not save buffer options which breaks syntax highlighting on restore
 set sessionoptions-=options
+" }}}
 
-" ###### Keymappings ######
+" ###### Keymappings ###### {{{
 " Easy navigation while in split and terminal modes
 " Quick escape to Normal mode in a Terminal buffer.  Alt+j Alt+j.
 :tnoremap <A-j><A-j> <C-\><C-n>
@@ -188,4 +199,4 @@ vnoremap <F1> <Nop>
 
 " Map NERDTree quick access
 nnoremap <C-n> :NERDTreeToggle<cr>
-
+" }}}
