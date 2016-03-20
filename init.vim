@@ -16,6 +16,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " Neomake - asynchronous make and syntax checking
 Plug 'benekastah/neomake'
+" Ansible-VIM - better support for Ansible YAML playbooks
+Plug 'pearofducks/ansible-vim'
 " indentLine - shows indention levels with 'set list' on
 Plug 'yggdroot/indentline'
 " BetterWhitespace - whitespace highlighting
