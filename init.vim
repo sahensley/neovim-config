@@ -103,11 +103,11 @@ set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ " when 'list on
 " seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
 let g:seoul256_background=236
 " seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
-let g:seoul256_light_background=252
+let g:seoul256_light_background=253
 filetype plugin indent on
 syntax enable                   " syntax highlighting
-set background=dark             " Use dark backgrounds. If using seoul256-light, set to light.
-colorscheme seoul256            " Use seoul256. Change to seoul256-light if wanted.
+set background=light            " Use light backgrounds. If using seoul256, set to dark.
+colorscheme seoul256-light      " Use seoul256-light. Change to seoul256 for a darker scheme.
 set colorcolumn=81              " Highlight column 81
 au VimResized * :wincmd =       " auto resize split windows on parent resize
 nmap <Space> <Leader>
