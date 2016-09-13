@@ -8,12 +8,12 @@ Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
 " BufExplorer - easier buffer switching
 Plug 'jlanzarotta/bufexplorer'
-" NERDTree - file browser
-Plug 'scrooloose/nerdtree'
 " Commentary - easy commenting via 'g c'
 Plug 'tpope/vim-commentary'
 " Fugitive - git wrapper
 Plug 'tpope/vim-fugitive'
+" Vinegar - netrw enhancement
+Plug 'tpope/vim-vinegar'
 " Neomake - asynchronous make and syntax checking
 Plug 'benekastah/neomake'
 " Ansible-VIM - better support for Ansible YAML playbooks
@@ -207,7 +207,4 @@ vnoremap <F1> <Nop>
 :nnoremap <F11> :bprevious<CR>
 " Goto next buffer (moves forward/right)
 :nnoremap <F12> :bNext<CR>
-
-" Map NERDTree quick access
-nnoremap <C-n> :NERDTreeToggle<cr>
 " }}}
