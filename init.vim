@@ -140,13 +140,6 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_extensions = ['branch']
 " }}}
-"
-" " Neomake plugin configuration {{{
-" " Bash linter configuration
-"     let g:neomake_sh_shellcheck_maker = {
-"         \ 'args': ['--shell', 'bash'],
-"         \ }
-" " }}}
 
 " Turn on backups {{{
 set backup
