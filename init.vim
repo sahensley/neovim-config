@@ -126,6 +126,10 @@ let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'syntax': 'markdown', 'ext': '.wiki'}]
 " }}}
 
+" Neomake shellcheck configuration {{{
+let g:neomake_sh_shellcheck_maker = {'args': ['--exclude=SC1091']}
+" }}}
+
 " Scratch plugin configuration {{{
 let g:scratch_top = 0
 let g:scratch_insert_autohide = 0
