@@ -69,8 +69,8 @@ endif
 " }}}
 
 set laststatus=2                " never show the status line
-set nu                          " set line numbering
-set rnu                         " set relative line number
+set number                      " set line numbering
+set relativenumber              " set relative line number
 set cursorline                  " highlight current line
 set backspace=indent,eol,start  " delete line breaks, auto ins and start of insert mode
 set hlsearch                    " Switch on search pattern highlighting.
