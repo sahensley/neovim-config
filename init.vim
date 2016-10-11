@@ -68,11 +68,12 @@ if !isdirectory($HOME . '/.vimhodgepodge/wiki_html')
 endif
 " }}}
 
-set laststatus=2                " never show the status line
-set number                      " set line numbering
-set relativenumber              " set relative line number
-set cursorline                  " highlight current line
-set backspace=indent,eol,start  " delete line breaks, auto ins and start of insert mode
+set laststatus=2                " Never show the status line
+set lazyredraw                  " Don't redraw screen during macros
+set number                      " Set line numbering
+set relativenumber              " Set relative line number
+set cursorline                  " Highlight current line
+set backspace=indent,eol,start  " Delete line breaks, auto ins and start of insert mode
 set hlsearch                    " Switch on search pattern highlighting.
 set ch=1                        " Make command line two lines high
 set mousehide                   " Hide the mouse when typing text
@@ -83,19 +84,19 @@ set smartcase                   " Do smart case matching
 set incsearch                   " Incremental search
 set hidden                      " Hide buffers when they are abandoned
 set nowrap                      " Turn off line wrapping
-set ruler                       " shows the line number on the bar
+set ruler                       " Shows the line number on the bar
 set undolevels=1000             " 1000 undos
-set autoindent                  " copies indention from previous line
-set smartindent                 " automatically insert extra level on indent in some cases
-set tabstop=4                   " tab stops character is four spaces
-set shiftwidth=4                " when pressing << >> or ==, indent a tab that is four spaces in size
-set expandtab                   " spaces for tabs
+set autoindent                  " Copies indention from previous line
+set smartindent                 " Automatically insert extra level on indent in some cases
+set tabstop=4                   " Tab stops character is four spaces
+set shiftwidth=4                " When pressing << >> or ==, indent a tab that is four spaces in size
+set expandtab                   " Spaces for tabs
 set mouse=n                     " Enable mouse only in normal mode
 set scrolloff=3                 " 3 lines on top and bottom when scrolling
 set sidescrolloff=3             " 3 lines of buffer when side scrolling
 set splitbelow                  " Split windows below current
 set splitright                  " Split window to right
-set linebreak                   " wrap whole word, 'list on' breaks this
+set linebreak                   " Wrap whole word, 'list on' breaks this
 set showbreak=»»»               " Character to show on wrapped lines
 set foldmethod=indent           " Create folds at indents
 set foldlevelstart=10           " Most folds are open by default.  Fold after 10 deep.
@@ -107,11 +108,11 @@ let g:seoul256_background=236
 " seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
 let g:seoul256_light_background=253
 filetype plugin indent on
-syntax enable                   " syntax highlighting
+syntax enable                   " Syntax highlighting
 set background=light            " Use light backgrounds. If using seoul256, set to dark.
 colorscheme seoul256-light      " Use seoul256-light. Change to seoul256 for a darker scheme.
 set colorcolumn=81              " Highlight column 81
-au VimResized * :wincmd =       " auto resize split windows on parent resize
+au VimResized * :wincmd =       " Auto resize split windows on parent resize
 nmap <Space> <Leader>
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
