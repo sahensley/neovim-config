@@ -28,6 +28,8 @@ Plug 'mtth/scratch.vim'
 Plug 'vimwiki/vimwiki'
 "  Neoterm - NeoVim terminal wrapper functions
 Plug 'kassio/neoterm'
+" Powershell - Syntax highlighting
+Plug 'PProvost/vim-ps1'
 call plug#end()
 " }}}
 
