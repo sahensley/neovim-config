@@ -4,6 +4,8 @@
 call plug#begin('~/.config/nvim/plugged')
 " Seoul256 - color scheme
 Plug 'junegunn/seoul256.vim'
+" Goyo - distraction free writing
+Plug 'junegunn/goyo.vim'
 " Airline - fancy statusline
 Plug 'vim-airline/vim-airline'
 " BufExplorer - easier buffer switching
@@ -14,24 +16,42 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " Vinegar - netrw enhancement
 Plug 'tpope/vim-vinegar'
-" Neomake - asynchronous make and syntax checking
-Plug 'benekastah/neomake'
+" ALE - Asynchronous Lint Engine
+Plug 'w0rp/ale'
+" Grepper - Async Grep Tool
+Plug 'mhinz/vim-grepper'
 " Ansible-VIM - better support for Ansible YAML playbooks
 Plug 'pearofducks/ansible-vim'
+" PS1 - Powershell syntax
+Plug 'PProvost/vim-ps1'
+" Python PEP8 Indent - nicer Python indents
+Plug 'Vimjas/vim-python-pep8-indent'
 " indentLine - shows indention levels with 'set list' on
 Plug 'yggdroot/indentline'
 " BetterWhitespace - whitespace highlighting
 Plug 'ntpeters/vim-better-whitespace'
 " Scratch - scratch buffer
-Plug 'mtth/scratch.vim'
+Plug 'sahensley/scratch.vim'
 " Vimwiki - personal wiki
 Plug 'vimwiki/vimwiki'
 "  Neoterm - NeoVim terminal wrapper functions
 Plug 'kassio/neoterm'
-" Powershell - Syntax highlighting
-Plug 'PProvost/vim-ps1'
 call plug#end()
 " }}}
+
+"Load different settings depending on OS
+if has('win32') || has('win64')
+    if has('gui_running')
+        set guifont=Consolas:h12:cANSI
+    endif
+    "Set fileformat to DOS style
+    set fileformat=dos
+elseif has('unix')
+    if has('gui_running')
+        set guifont=Menlo\ Regular:h17
+    endif
+    set fileformat=unix
+endif
 
 " Directory creation {{{
 " Turn on automatic backups and set path
@@ -127,14 +147,10 @@ endif
 let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'path_html': '~/.vimhodgepodge/wiki_html',
             \ 'syntax': 'markdown', 'ext': '.wiki'}]
+let g:vimwiki_url_maxsave = 0
+let g:vimwiki_conceallevel = 0
 " }}}
 
-" Scratch plugin configuration {{{
-let g:scratch_top = 0
-let g:scratch_insert_autohide = 0
-let g:scratch_autohide = 0
-let g:scratch_no_mappings = 1
-" }}}
 
 " Airline plugin configuration {{{
 " Don't use powerline patched fonts in airline
@@ -144,12 +160,27 @@ let g:airline_right_sep=''
 let g:airline_extensions = ['branch']
 " }}}
 
+" ALE plugin configuration {{{
+let g:ale_enabled = 0
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 1
+" }}}
+
 " Turn on backups {{{
 set backup
 " When file is written, grab the current timestamp and use as the backup
 " extension.  I.E. example.txt_1970-01-01.0000.bak
 :au BufWritePre * let &backupext=strftime("_%Y-%m-%d.%H%M.bak")
 " }}}
+
+"GUI mode toolbar removal
+if has('gui_running')
+    :set guioptions-=T "remove toolbar
+    :set guioptions-=L "remove left vertical scrollbar (appears on split)
+    :set guioptions-=r "remove right-hand scroll bar
+endif
 
 " View and session options {{{
 " restore_view.vim saves views with these options
@@ -195,6 +226,8 @@ vnoremap <F1> <Nop>
 :nnoremap <F2> :set paste! paste?<CR>
 " Toggle spell check
 :nnoremap <F3> :set spell! spell?<CR>
+" Toggle linting
+:nnoremap <F4> :ALEToggle<CR>
 " Goto previous tab (moves forward/right)
 :nnoremap <F9> :tabprevious<CR>
 " Goto next tab (moves forward/right)
@@ -204,3 +237,30 @@ vnoremap <F1> <Nop>
 " Goto next buffer (moves forward/right)
 :nnoremap <F12> :bNext<CR>
 " }}}
+
+" ######Custom commands and modes######
+" Write file even if it is read only.  SudoWrite.
+command! SudoWrite write !sudo tee % > /dev/null
+" Markdown to rtf.  Produces .rtf file in the same directory as original.
+command! Md2rtf silent !pandoc --from markdown % --to rtf --output %:r.rtf --standalone
+" Markdown to html.  Produces .html file in the same directory as original.
+command! Md2html silent !pandoc -f markdown % -t html -o %:r.html -s
+" Markdown to html in a Vertical split
+command! Md2htmlVsp :call MarkdownToHTMLVSplit()
+
+if !exists('g:pandoc_command')
+    let g:pandoc_command = 'pandoc'
+endif
+
+function! MarkdownToHTMLVSplit()
+    let markdownhtml = system(g:pandoc_command . " -f markdown  " . bufname("%") . " -t html")
+
+    " Open a new split and set it up.
+    vsplit __Markdown_HTML__
+    normal! ggdG
+    setlocal filetype=html
+    setlocal buftype=nofile
+
+    "Paste the HTML in the buffer
+    call append(0, split(markdownhtml, '\v\n'))
+endfunction
